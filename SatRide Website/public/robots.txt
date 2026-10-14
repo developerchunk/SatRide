@@ -1,0 +1,8 @@
+# SatRide — https://satride.developerstring.com
+#
+# Explicit and permissive on purpose. Without this file the SPA rewrite
+# (`/* /index.html 200`) answers /robots.txt with HTML, and a crawler that cannot
+# parse robots.txt may decline to fetch anything else.
+
+User-agent: *
+Allow: /

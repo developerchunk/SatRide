@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      A dark, bar-less shell so the window matches the Compose "Night Ops" background from the
+      very first frame. Without this the system splash flashes light grey before Compose draws.
+    -->
+    <style name="Theme.SatRide" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/satride_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

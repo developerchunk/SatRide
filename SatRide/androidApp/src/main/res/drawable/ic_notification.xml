@@ -1,0 +1,37 @@
+<!--
+  Status-bar icon for pass alerts.
+
+  Android masks a small icon to a white silhouette, so this is a flat single-colour shape and
+  nothing else: a satellite body with two wings, the same outline the CREWED glyph uses in the app,
+  which is what makes a glance at the status bar recognisably SatRide.
+
+  Looked up by name at runtime by core:notifications, which owns no Android resources of its own.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="#FFFFFFFF">
+
+    <!-- Body -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M10,10h4v4h-4z" />
+
+    <!-- Solar wings -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M3.5,10.8h5.2v2.4h-5.2z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M15.3,10.8h5.2v2.4h-5.2z" />
+
+    <!-- Antenna, pointing at the ground the way a downlink does -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M11.4,14h1.2v4.2h-1.2z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M9.6,18.2h4.8v1.2h-4.8z" />
+</vector>

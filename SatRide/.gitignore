@@ -1,0 +1,35 @@
+*.iml
+.kotlin
+.gradle
+**/build/
+xcuserdata
+!src/**/build/
+local.properties
+.idea
+.DS_Store
+captures
+.externalNativeBuild
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+node_modules/
+
+# SatRide
+.kotlin/
+*.hprof
+/build-logic/build/
+# Xcode derived data from local -derivedDataPath builds (SPM checkouts, build products).
+/iosApp/derivedData/
+
+/google-services
+
+# Release signing. The keystore lives outside the repo entirely; this file holds the path to it
+# and its passwords, and must never be committed. See keystore.properties
+
+keystore.properties
+*.jks
+*.keystore

@@ -1,0 +1,13 @@
+.DS_Store
+
+# Local backups of Firebase config — the live files are ignored next to where they are used.
+*.bak-*
+
+# Release outputs (signed bundles) never belong in the repository.
+SatRide/androidApp/release/
+
+# Build artifacts
+SatRide Website/tsconfig.tsbuildinfo
+
+# Exported design-canvas page; regenerate it rather than committing the bundled editor.
+store/play/listing-preview/satride-play-listing.html

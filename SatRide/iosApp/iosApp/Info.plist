@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+
+	<!--
+	  Required for CLLocationManager. Without this key iOS silently refuses the authorisation
+	  request rather than reporting an error, which is indistinguishable from a user declining —
+	  so its absence would look like a bug in our code rather than a missing declaration.
+	-->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SatRide uses your approximate location to work out which satellites are overhead and when they will pass. Nothing is uploaded, and you can enter a location by hand instead.</string>
+
+	<!--
+	  Required for CMMotionManager's device-motion updates, which is how the app knows where the
+	  phone is pointing.
+	-->
+	<key>NSCameraUsageDescription</key>
+	<string>SatRide shows the camera behind the sky view so satellites appear over what you are actually looking at. No photos or video are taken, saved or sent anywhere.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>SatRide uses the compass and motion sensors to show satellites in the sky where you are actually pointing the phone.</string>
+
+	<!--
+	  The custom URL scheme a pass notification opens (P6). Without this registration iOS has
+	  nowhere to deliver `satride://` links, and `onOpenURL` is simply never called — the
+	  notification opens the app on whatever screen it was last on, with no error anywhere.
+
+	  Local notifications themselves need no plist key; authorisation is asked for at the moment
+	  the user taps [Remind me].
+	-->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.developerstring.satride.deeplink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>satride</string>
+			</array>
+		</dict>
+		<!--
+		  Google's OAuth callback returns on the REVERSED_CLIENT_ID scheme from
+		  GoogleService-Info.plist. Without this registration iOS has nowhere to deliver it, so the
+		  sign-in sheet opens, the user picks an account, and nothing ever comes back — the flow
+		  hangs with no error anywhere.
+		-->
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.developerstring.satride.googlesignin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1059998960182-373o66h2u8fjr3qmjblilpf5kem1n9q2</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      Both, with fine preferred and coarse as the fallback.
+
+      Coarse alone is very nearly enough: two kilometres of observer error moves a satellite at
+      800 km range by about 0.14 degrees, against one to five degrees of compass error that
+      dominates everything else in the AR view. Fine location is requested anyway because it is
+      the one term in the accuracy budget that can be removed outright, and the sky view is the
+      feature the whole app is judged on — with the compass error eventually improved by
+      calibration, the observer position should not be what is left limiting it.
+
+      Coarse is still declared and still accepted: a user who grants only approximate location
+      gets a fully working app, because at satellite ranges it genuinely is enough.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!--
+      The camera is the AR view's backdrop and nothing else: no frame is read, stored or sent
+      anywhere. Refusing it costs the camera image and nothing more — the sky view falls back to
+      planetarium mode, which draws the same satellites on a dark background.
+    -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--
+      Pass alerts (P6).
+
+      POST_NOTIFICATIONS is the runtime permission from Android 13; the app asks for it at the
+      moment the user taps [Remind me], not on first launch, because a notification prompt before
+      anything has been shown is the most reliable way to earn a permanent refusal.
+
+      SCHEDULE_EXACT_ALARM, not USE_EXACT_ALARM. The latter is granted automatically but is
+      reserved for alarm-clock and calendar apps; a satellite tracker claiming it is a review
+      rejection. With SCHEDULE_EXACT_ALARM the user can revoke exactness, and the scheduler falls
+      back to an inexact alarm and says so — a pass reminder that lands a couple of minutes late
+      is degraded, not useless.
+
+      RECEIVE_BOOT_COMPLETED is what stops the feature dying silently: Android drops every armed
+      alarm on restart without telling the app.
+    -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!--
+      Declared as optional so the app installs on devices without them. A phone with no compass
+      falls back to the manual planetarium mode, which is the same path a user takes when they
+      decline location permission, and is a supported way to use SatRide rather than a broken one.
+    -->
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+
+    <!--
+      Declared explicitly rather than left to the default.
+
+      `resizeableActivity` already defaults to true at this target SDK, but Play's large-screen
+      checks and every reviewer read the manifest, not the default — and a future targetSdk bump
+      changing the default underneath the app is exactly the kind of silent regression that turns
+      into a store warning nobody can trace. There is deliberately no `screenOrientation` anywhere:
+      the app rotates, splits and free-forms, which is now a listing requirement rather than a
+      nicety.
+    -->
+    <!--
+      The advertising id, removed.
+
+      SatRide has no ads and no advertising SDK, so it has no use for an advertising identifier. It
+      would arrive anyway: `play-services-measurement-api`, which Firebase Analytics depends on,
+      declares AD_ID in its own manifest and the merger pulls it in. Verified in
+      `androidApp/build/outputs/logs/manifest-merger-release-report.txt`, which names the library.
+
+      So it is removed explicitly rather than merely not declared. An app that holds AD_ID has to
+      say so in the data-safety form, and saying "we collect an advertising id" for an app with no
+      advertising is both untrue in spirit and a needless install-time worry. Firebase Analytics
+      works without it — it falls back to the app-instance id — and Crashlytics never wanted it.
+
+      `ACCESS_ADSERVICES_AD_ID` comes from the same library for the same purpose and goes with it.
+    -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_ADSERVICES_AD_ID"
+        tools:node="remove" />
+
+    <application
+        android:name=".SatRideApplication"
+        android:allowBackup="true"
+        android:resizeableActivity="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SatRide">
+
+        <!--
+          `singleTop` is required by the deep link, not a preference.
+
+          SatRide is a single-activity app, so with the default launch mode every `satride://` link
+          starts a *second* MainActivity on top of the first. Both then have a live SkyViewModel
+          collecting the guide bus, the outgoing one wins the race to consume the request, and the
+          instance the user is actually looking at never sees it — the app opens on the sky view
+          with nothing guided, which reads as the notification having done nothing at all.
+
+          With singleTop the link is delivered to the existing instance through onNewIntent, there
+          is only ever one view model, and there is no race to lose.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
+            android:theme="@style/Theme.SatRide">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+              satride://sky/detail/{noradId}?guide=true — what a pass notification opens, and the
+              only URL the app answers to. Parsed in common code (core:common/SkyDeepLink) so the
+              two platforms cannot drift.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="satride" android:host="sky" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          Both are `exported="false"`: the alarm is set by this app and delivered to this app, and
+          the boot broadcast is sent by the system, neither of which needs any other app to be able
+          to send them. An exported alert receiver would let anything on the phone fake a pass.
+        -->
+        <receiver
+            android:name="com.developerstring.satride.core.notifications.PassAlertReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.developerstring.satride.core.notifications.BootCompletedReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

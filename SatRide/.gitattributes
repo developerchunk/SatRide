@@ -1,0 +1,5 @@
+# Recorded API responses are kept exactly as the servers sent them, CRLF and all.
+# Several of these endpoints serve CRLF line endings, and coping with that is a real
+# requirement of the TLE parser — normalising it here would quietly delete the only
+# coverage for it, which defeats the point of recording real responses.
+**/src/commonTest/resources/** -text

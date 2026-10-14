@@ -1,0 +1,750 @@
+{
+ "generated_at": "2026-08-02T07:18:59.555913Z",
+ "satellite_count": 6,
+ "tle_text": "NOAA 15\n1 25338U 98030A   26213.96730965  .00000107  00000-0  61346-4 0  9992\n2 25338  98.5064 233.3622 0009630 207.2106 152.8572 14.27159051467824\nISS (ZARYA)\n1 25544U 98067A   26214.05483574  .00006269  00000-0  12055-3 0  9990\n2 25544  51.6314  73.1030 0007159   3.2336 356.8698 15.49306946578861\nNOAA 18\n1 28654U 05018A   26213.91297296  .00000049  00000-0  49222-4 0  9994\n2 28654  98.8098 292.9233 0014603  25.3931 334.7957 14.13736874 92773\nNOAA 19\n1 33591U 09005A   26213.91997835  .00000039  00000-0  44592-4 0  9990\n2 33591  98.9496 284.8222 0012713 259.9790  99.9947 14.13480721900941\nCSS (TIANHE)\n1 48274U 21035A   26213.90287901  .00018530  00000-0  23782-3 0  9998\n2 48274  41.4686  44.4635 0001014 283.9033  76.1692 15.58689136300305\nMETEOR-M2 3\n1 57166U 23091A   26213.97968275 -.00000003  00000-0  17508-4 0  9996\n2 57166  98.6054 268.0138 0004726  49.6579 310.5013 14.24050200161038",
+ "transmitters": [
+  {
+   "uuid": "BeG2GstNLjwGabsMwHEnJJ",
+   "description": "SARSAT L-Band",
+   "downlink_low": 1544500000,
+   "mode": "BPSK",
+   "baud": 2400.0,
+   "norad_cat_id": 25338,
+   "status": "active",
+   "service": "Mobile"
+  },
+  {
+   "uuid": "bCF8tHeNaNM5QeEMy8Y8hn",
+   "description": "HRPT",
+   "downlink_low": 1702500000,
+   "mode": "HRPT",
+   "baud": 665400.0,
+   "norad_cat_id": 25338,
+   "status": "active"
+  },
+  {
+   "uuid": "D3ZUeiSUnUQkq5EuEAepxi",
+   "description": "Direct Sounder Broadcast",
+   "downlink_low": 137350000,
+   "mode": "DSB",
+   "baud": 8320.0,
+   "norad_cat_id": 25338,
+   "status": "active"
+  },
+  {
+   "uuid": "ZJxCeQmih9zDfYNVrB4wRN",
+   "description": "Mode V APRS",
+   "downlink_low": 145825000,
+   "mode": "AFSK",
+   "baud": 1200.0,
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "PjfcFc4PZ8M8n3thuyA6x9",
+   "description": "Mode V/V FM (crew R2+3)",
+   "downlink_low": 145800000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "pQRPwTWqQr7unDav5Mz4pG",
+   "description": "Mode V/V FM (crew R1)",
+   "downlink_low": 145800000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "EvtcWByczLm3LejfbGt8pS",
+   "description": "VHF-1 Soyuz Communication - FMN",
+   "downlink_low": 143625000,
+   "mode": "FMN",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "LpxAGDsjnvSJSBWDw9ZQi5",
+   "description": "VHF-2 Soyuz Communication - FMN",
+   "downlink_low": 130167000,
+   "mode": "FMN",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "qAeYxdoo7wv6rcVKhGsPsC",
+   "description": "Soyuz / Orlan space suit",
+   "downlink_low": 121750000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "e3T8v6U7hBhSTTDsGjd7ZD",
+   "description": "Mystery transmitter 137.6257MHz",
+   "downlink_low": 137625700,
+   "mode": "CW",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "HcT7xq7wxKnLGdfHZhR3db",
+   "description": "ISS CCSDS Data 1",
+   "downlink_low": 2265000000,
+   "mode": "QPSK",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Aeronautical"
+  },
+  {
+   "uuid": "dPuSJJPpqqMuFTGNBLw77u",
+   "description": "IORS Telemetry",
+   "downlink_low": 437800000,
+   "mode": "FSK",
+   "baud": 9600.0,
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "GoiXuPtD6bXcQbY9vwxEFi",
+   "description": "ICARUS Animal-Tracker Experiment",
+   "downlink_low": 468100000,
+   "mode": "PSK",
+   "baud": 656.0,
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Radiolocation"
+  },
+  {
+   "uuid": "T8Vq5pF9paN9x9CoJK9MT2",
+   "description": "Control Module \"Zarya\"",
+   "downlink_low": 632000000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "WKYGC2vEzqYLrAPyHjLViR",
+   "description": "Service Module \"Zvezda\" (Upper side band)",
+   "downlink_low": 630128000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "kGUAAw2FAT8MJ7cxCEUZJ5",
+   "description": "Mode U - Possibly Voice",
+   "downlink_low": 435400000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "XZTqD4wKjCt497URjTLB7i",
+   "description": "Suit 1",
+   "downlink_low": 121100000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "HLrZpCRcTvPqqndeg4xnbY",
+   "description": "Suit 2",
+   "downlink_low": 121275000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "cCw7U8jt863ktpTQeqjVq7",
+   "description": "EMU Alt",
+   "downlink_low": 417100000,
+   "mode": "FSK",
+   "baud": 695.0,
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "T9RW3kVtzUxiyS4dBSGQh7",
+   "description": "Mode S1",
+   "downlink_low": 2425000000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "Ro4PxBCBuQ4NGwj5uBJXUq",
+   "description": "Mode S2",
+   "downlink_low": 2375000000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "oS2odPao5VikPbEqAjkTFc",
+   "description": "EVA/WVS",
+   "downlink_low": 400575000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Inter-satellite"
+  },
+  {
+   "uuid": "ExmfdcGmsJPmNEQtjQqmkU",
+   "description": "Rassvet",
+   "downlink_low": 637500000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "LX6y6kzNaamd2Z3XPa2GuC",
+   "description": "CUCU (SpaceX COTS UHF Communication Unit)",
+   "downlink_low": 400500000,
+   "mode": "BPSK",
+   "baud": 1536.0,
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Inter-satellite"
+  },
+  {
+   "uuid": "WW8CQ54bNyfrnuzbBBcjQV",
+   "description": "SpaceX Dragon Wideband Telemetry",
+   "downlink_low": 2205500000,
+   "mode": "BPSK",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "Kzcz2938Fn4wzFC8Pj2wQ3",
+   "description": "SpaceX Dragon narrowband telemetry",
+   "downlink_low": 2216000000,
+   "mode": "BPSK",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "fK9LAVYUMBHmfvieYQfGK3",
+   "description": "SpaceX Falcon Wideband Telemetry",
+   "downlink_low": 2213500000,
+   "mode": "BPSK",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "m5DvX4VxKTPW2nLD9LXnbR",
+   "description": "Suit 3",
+   "downlink_low": 139208000,
+   "mode": "FMN",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Aeronautical"
+  },
+  {
+   "uuid": "S8bCq8J44SJffrw5p4eZuz",
+   "description": "CW Soyuz-TM and Progress M1 beacon",
+   "downlink_low": 922750000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Radionavigational"
+  },
+  {
+   "uuid": "ib9K4nf4NeZrRgzoii8JbU",
+   "description": "Soyuz-TM and Progress M-1 TLM",
+   "downlink_low": 166000000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Inter-satellite"
+  },
+  {
+   "uuid": "WcPXvbPj46QYmnjGuaHPh3",
+   "description": "Regul",
+   "downlink_low": 922763000,
+   "mode": "CW",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Inter-satellite"
+  },
+  {
+   "uuid": "aKgUxUhTXt8w8wWuEhYWV3",
+   "description": "TORU S1",
+   "downlink_low": 2860000000,
+   "mode": "AM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "Sc8SJnjmcvgKg7XA2fZDQJ",
+   "description": "Toru S2",
+   "downlink_low": 2725000000,
+   "mode": "AM",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "7e6DgnSMfAnUuUXgRFH4wR",
+   "description": "Kvant",
+   "downlink_low": 768975000,
+   "mode": "FMN",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "2uE4irjovfEP9kM2EvTMfv",
+   "description": "Falcon 9 CCSDS 2272.5",
+   "downlink_low": 2272500000,
+   "mode": "GMSK",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Aeronautical"
+  },
+  {
+   "uuid": "ARgBEDYjyyZSjbFB5imVY4",
+   "description": "Falcon 9 CCSDS 2232.5",
+   "downlink_low": 2232500000,
+   "mode": "GMSK",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Aeronautical"
+  },
+  {
+   "uuid": "MSFbqmFSAJtEjE82wQTMud",
+   "description": "EMU (695000)",
+   "downlink_low": 414200000,
+   "mode": "FSK",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Inter-satellite"
+  },
+  {
+   "uuid": "8qgr8X9wKAwb9BwA6uZYqX",
+   "description": "Mode U - SSTV",
+   "downlink_low": 437800000,
+   "mode": "SSTV",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "iyfxHeiEWTiCatrAXcLifM",
+   "description": "Mode S - HamTV DVB-S",
+   "downlink_low": 2395000000,
+   "mode": "DVB-S2",
+   "norad_cat_id": 25544,
+   "status": "active"
+  },
+  {
+   "uuid": "eozSf5mKyzNxoascs8V4bV",
+   "description": "Mode V/U FM - Voice Repeater CTCSS 67.0 Hz",
+   "downlink_low": 437800000,
+   "mode": "FM",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "qW5N27QuSrN2JMasbNiUhR",
+   "description": "Mode V Imaging",
+   "downlink_low": 145800000,
+   "mode": "SSTV",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "cjQ8LkcsshNpAvTEAGkU3X",
+   "description": "Mode U APRS test",
+   "downlink_low": 437825000,
+   "mode": "AFSK",
+   "baud": 1200.0,
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "bSPmbvvAavnj9XHMim8yEc",
+   "description": "Mode U - SSTV - Robot-36",
+   "downlink_low": 437550000,
+   "mode": "SSTV",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "BRYLkJW4wwk3JqhMzyZSYK",
+   "description": "Ku Band Digital Data Downlink",
+   "downlink_low": 15003400000,
+   "mode": "QPSK",
+   "norad_cat_id": 25544,
+   "status": "active",
+   "service": "Space Operation"
+  },
+  {
+   "uuid": "jfPQW4xWfTFmp7eKoPNsph",
+   "description": "ARGOS-3 A-DCS 465.9875MHz",
+   "downlink_low": 465987500,
+   "mode": "BPSK",
+   "baud": 400.0,
+   "norad_cat_id": 28654,
+   "status": "active"
+  },
+  {
+   "uuid": "hkusTZTf5Yk8p6VpCEk8aX",
+   "description": "SARSAT L-Band",
+   "downlink_low": 1544500000,
+   "mode": "BPSK",
+   "baud": 2400.0,
+   "norad_cat_id": 28654,
+   "status": "active",
+   "service": "Mobile"
+  },
+  {
+   "uuid": "JRrTCEcCk3G8HJ4ifwyM4W",
+   "description": "HRPT Downlink",
+   "downlink_low": 1707000000,
+   "mode": "HRPT",
+   "baud": 665400.0,
+   "norad_cat_id": 28654,
+   "status": "active"
+  },
+  {
+   "uuid": "RMnA3okEddVHPBht23QYDm",
+   "description": "Direct Sounder Broadcast",
+   "downlink_low": 137350000,
+   "mode": "DSB",
+   "baud": 8320.0,
+   "norad_cat_id": 28654,
+   "status": "active"
+  },
+  {
+   "uuid": "SKinWVZWGCNW97puwV2cZ9",
+   "description": "Noaa 18 SGLS channel",
+   "downlink_low": 2247484000,
+   "mode": "BPSK",
+   "baud": 500000.0,
+   "norad_cat_id": 28654,
+   "status": "active"
+  },
+  {
+   "uuid": "CbPtbDQD5NPGFxUJFLSU3Z",
+   "description": "GAC (active over Eastern US)",
+   "downlink_low": 1698000000,
+   "mode": "FMN",
+   "norad_cat_id": 28654,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "hMSWYpzZwRS6Au99xTeo9m",
+   "description": "APT IQ Recording",
+   "downlink_low": 137912500,
+   "mode": "FSK",
+   "baud": 19200.0,
+   "norad_cat_id": 28654,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "Bsa8dgFiYCpAuMTjZrqY5a",
+   "description": "ARGOS-3 A-DCS 465.9875MHz",
+   "downlink_low": 465987500,
+   "mode": "BPSK PMT-A3",
+   "baud": 800.0,
+   "norad_cat_id": 33591,
+   "status": "active"
+  },
+  {
+   "uuid": "cRCsFczwzdZSEzQtQApG8V",
+   "description": "SARSAT L-Band",
+   "downlink_low": 1544500000,
+   "mode": "BPSK",
+   "baud": 2400.0,
+   "norad_cat_id": 33591,
+   "status": "active",
+   "service": "Mobile"
+  },
+  {
+   "uuid": "DbcMgskpnJryLP3NGrR5Xb",
+   "description": "HRPT Downlink",
+   "downlink_low": 1698000000,
+   "mode": "HRPT",
+   "baud": 665400.0,
+   "norad_cat_id": 33591,
+   "status": "active"
+  },
+  {
+   "uuid": "R9DmBVhkc4Ltzuz5NDNHto",
+   "description": "137.932",
+   "downlink_low": 137932000,
+   "mode": "FM",
+   "norad_cat_id": 33591,
+   "status": "active"
+  },
+  {
+   "uuid": "6sVpSCgyPBskf5Mt6qp49N",
+   "description": "Direct Sounder Broadcast",
+   "downlink_low": 137770000,
+   "mode": "DSB",
+   "baud": 8320.0,
+   "norad_cat_id": 33591,
+   "status": "active"
+  },
+  {
+   "uuid": "RoH8mePWxUyXSmFyERMsqo",
+   "description": "Telemetry",
+   "downlink_low": 2247500000,
+   "mode": "BPSK",
+   "baud": 500000.0,
+   "norad_cat_id": 33591,
+   "status": "active"
+  },
+  {
+   "uuid": "Ei96mmj2ZnWFwp79PcUfMY",
+   "description": "GAC - LHCP (active over Norway)",
+   "downlink_low": 1702500000,
+   "mode": "FM",
+   "norad_cat_id": 33591,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "fzA9UYkHs4tYKer2KSCT2Q",
+   "description": "S TLM 1",
+   "downlink_low": 2232220000,
+   "mode": "FM",
+   "norad_cat_id": 48274,
+   "status": "active"
+  },
+  {
+   "uuid": "Wko52svXpQDK2gdHnnrGYx",
+   "description": "S TLM 2",
+   "downlink_low": 2250720000,
+   "mode": "FM",
+   "norad_cat_id": 48274,
+   "status": "active"
+  },
+  {
+   "uuid": "4UvBwGPwQRwoejWegbByyR",
+   "description": "2208.722",
+   "downlink_low": 2208722000,
+   "mode": "FM",
+   "norad_cat_id": 48274,
+   "status": "active"
+  },
+  {
+   "uuid": "A9LvMKMFVu7JMsaiVaDeoU",
+   "description": "1A V/V crew voice NFM",
+   "downlink_low": 145985000,
+   "mode": "FMN",
+   "baud": 12500.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "SYNaLxjDbU2XNih337XsEs",
+   "description": "1B U/U crew voice NFM",
+   "downlink_low": 436510000,
+   "mode": "FMN",
+   "baud": 12500.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "RNrAffSNjueKCWqqMQuLXJ",
+   "description": "2A V/U FM repeater NFM",
+   "downlink_low": 436510000,
+   "mode": "FMN",
+   "baud": 12500.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "TaCsx7ApXaJoZkZGcL6zJF",
+   "description": "2B U/V FM repeater NFM",
+   "downlink_low": 145985000,
+   "mode": "FMN",
+   "baud": 12500.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "jef9qEB6JhKDSPneswKWev",
+   "description": "3A V/V digipeater AFSK-FM 1200",
+   "downlink_low": 145825000,
+   "mode": "AFSK",
+   "baud": 1200.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "ZtXKby29eGjMsBFj4sYLCG",
+   "description": "3B U/U digipeater AFSK-FM 1200",
+   "downlink_low": 437550000,
+   "mode": "AFSK",
+   "baud": 1200.0,
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "63EenHAYSzVfqrqshAroCP",
+   "description": "4A V/V imaging SSTV-FM",
+   "downlink_low": 145985000,
+   "mode": "SSTV",
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "KzFnXqsrPpuFwiDxgWNU2L",
+   "description": "4B U/U imaging SSTV-FM",
+   "downlink_low": 436510000,
+   "mode": "SSTV",
+   "norad_cat_id": 48274,
+   "status": "active",
+   "service": "Amateur"
+  },
+  {
+   "uuid": "N76vPv2QJTX5HkNiEykTtL",
+   "description": "S-band telemetry",
+   "downlink_low": 2224075000,
+   "mode": "FM",
+   "norad_cat_id": 48274,
+   "status": "active"
+  },
+  {
+   "uuid": "PMAXsGNQyiPth4eRcwugaD",
+   "description": "SARSAT L-Band",
+   "downlink_low": 1544500000,
+   "mode": "BPSK",
+   "baud": 2400.0,
+   "norad_cat_id": 57166,
+   "status": "active"
+  },
+  {
+   "uuid": "9kLzrZ5JjiptnP86W4dKWy",
+   "description": "Raw X-Band",
+   "downlink_low": 8320000000,
+   "mode": "FM",
+   "norad_cat_id": 57166,
+   "status": "active"
+  },
+  {
+   "uuid": "4BJDRtMBbYyQiwMGbiapZ7",
+   "description": "S-Band TLM",
+   "downlink_low": 3405235000,
+   "mode": "FM",
+   "baud": 32000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "3Judk5zrzLFrxDebt3Rz5G",
+   "description": "Raw X-Band",
+   "downlink_low": 8128000000,
+   "mode": "FM",
+   "norad_cat_id": 57166,
+   "status": "active"
+  },
+  {
+   "uuid": "PTeTrUzTTR6Xzd25n5JZAy",
+   "description": "LRPT S-E RHCP D 80 kbps",
+   "downlink_low": 137912500,
+   "mode": "LRPT",
+   "baud": 80000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "HuBvmTihdiAHcyeGkCjE8d",
+   "description": "LRPT S-E RHCP D 72 kbps",
+   "downlink_low": 137900000,
+   "mode": "LRPT",
+   "baud": 72000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "FG2qyyEiHz9EhEFQKyi9WM",
+   "description": "LRPT S-E RHCP D 72 kbps",
+   "downlink_low": 137100000,
+   "mode": "LRPT",
+   "baud": 72000.0,
+   "norad_cat_id": 57166,
+   "status": "active"
+  },
+  {
+   "uuid": "fxDHKy9mbosDenbXD9hGTP",
+   "description": "LRPT S-E RHCP D 80 kbps",
+   "downlink_low": 137100000,
+   "mode": "LRPT",
+   "baud": 80000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "EHFTpnLwnRHqFsU6PLRyBW",
+   "description": "LRPT S-E RHCP D 80 kbps",
+   "downlink_low": 137900000,
+   "mode": "LRPT",
+   "baud": 80000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "Qc2PqaS7n9WYtne3U9EmKJ",
+   "description": "LRPT IQ recording usage",
+   "downlink_low": 137900000,
+   "mode": "FSK",
+   "baud": 40000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "FBDizt5ERyKtZFgv7zjHLB",
+   "description": "LRPT IQ recording usage",
+   "downlink_low": 137100000,
+   "mode": "FSK",
+   "baud": 40000.0,
+   "norad_cat_id": 57166,
+   "status": "active",
+   "service": "Meteorological"
+  },
+  {
+   "uuid": "S4jS3CcYg9DTvPdPBcmpW5",
+   "description": "HRPT",
+   "downlink_low": 1700000000,
+   "mode": "BPSK",
+   "baud": 800000.0,
+   "norad_cat_id": 57166,
+   "status": "active"
+  }
+ ],
+ "groups": {
+  "stations": [
+   25544,
+   48274
+  ],
+  "weather": [
+   57166,
+   25338,
+   28654,
+   33591
+  ]
+ }
+}

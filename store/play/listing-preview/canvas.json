@@ -1,0 +1,54 @@
+{
+  "artboards": [
+    {
+      "file": "Search.dc.html",
+      "title": "In search results",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 420
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "Store page",
+      "x": 500,
+      "y": 0,
+      "w": 412,
+      "h": 1080
+    },
+    {
+      "file": "Expanded.dc.html",
+      "title": "Full description",
+      "x": 1000,
+      "y": 0,
+      "w": 412,
+      "h": 1960
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-search",
+      "x": 0,
+      "y": -132,
+      "w": 412,
+      "text": "SHORT DESCRIPTION (80 max) \u2014 77 used.\nWhere it actually earns its keep: the line under your name in search results. It leads with the hook, not the category \u2014 every competitor is a tracker, none of them let you play. \"Track\" still catches the search intent."
+    },
+    {
+      "id": "note-main",
+      "x": 500,
+      "y": -132,
+      "w": 412,
+      "text": "APP NAME (30 max) \u2014 29 used.\n\"Satellite Tracker\" stays intact as an exact substring \u2014 that is the phrase people search. \"3D\" is the differentiator, pointing at the thing worth choosing this app for."
+    },
+    {
+      "id": "note-full",
+      "x": 1000,
+      "y": -132,
+      "w": 412,
+      "text": "FULL DESCRIPTION (4000 max) \u2014 2,614 used.\nPLAY WITH SATELLITES now leads, because Play truncates behind \"read more\" and the selling point has to sit above that fold."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

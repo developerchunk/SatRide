@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The mark, split the way an adaptive icon wants it: the space-and-Earth plate bleeds
+  to every edge so it survives whatever mask the launcher applies, and the satellite
+  sits alone in the foreground, inside the 72dp safe zone, so no mask can clip it.
+  The monochrome layer is the same satellite as a flat silhouette, for themed icons.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@mipmap/ic_launcher_background" />
+    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <monochrome android:drawable="@mipmap/ic_launcher_monochrome" />
+</adaptive-icon>

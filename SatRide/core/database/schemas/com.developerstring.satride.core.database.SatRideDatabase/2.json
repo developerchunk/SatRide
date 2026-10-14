@@ -1,0 +1,551 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "d87b1a4b527a53c4750ae109f51a2050",
+    "entities": [
+      {
+        "tableName": "satellites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`noradId` INTEGER NOT NULL, `name` TEXT NOT NULL, `classType` TEXT NOT NULL, `launchDate` TEXT, `countryCode` TEXT, `internationalDesignator` TEXT, `curated` INTEGER NOT NULL, PRIMARY KEY(`noradId`))",
+        "fields": [
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "classType",
+            "columnName": "classType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "launchDate",
+            "columnName": "launchDate",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "internationalDesignator",
+            "columnName": "internationalDesignator",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "curated",
+            "columnName": "curated",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "noradId"
+          ]
+        }
+      },
+      {
+        "tableName": "tles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`noradId` INTEGER NOT NULL, `name` TEXT NOT NULL, `line1` TEXT NOT NULL, `line2` TEXT NOT NULL, `epochMillis` INTEGER NOT NULL, `fetchedAtMillis` INTEGER NOT NULL, `sourceId` TEXT NOT NULL, PRIMARY KEY(`noradId`))",
+        "fields": [
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "line1",
+            "columnName": "line1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "line2",
+            "columnName": "line2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "epochMillis",
+            "columnName": "epochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAtMillis",
+            "columnName": "fetchedAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceId",
+            "columnName": "sourceId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "noradId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_tles_epochMillis",
+            "unique": false,
+            "columnNames": [
+              "epochMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tles_epochMillis` ON `${TABLE_NAME}` (`epochMillis`)"
+          }
+        ]
+      },
+      {
+        "tableName": "transmitters",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `noradId` INTEGER NOT NULL, `description` TEXT NOT NULL, `downlinkLowHz` INTEGER NOT NULL, `downlinkHighHz` INTEGER, `mode` TEXT NOT NULL, `baud` INTEGER, `status` TEXT NOT NULL, `invert` INTEGER NOT NULL, `service` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "downlinkLowHz",
+            "columnName": "downlinkLowHz",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "downlinkHighHz",
+            "columnName": "downlinkHighHz",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mode",
+            "columnName": "mode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baud",
+            "columnName": "baud",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invert",
+            "columnName": "invert",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service",
+            "columnName": "service",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_transmitters_noradId",
+            "unique": false,
+            "columnNames": [
+              "noradId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_transmitters_noradId` ON `${TABLE_NAME}` (`noradId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "pass_cache",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`noradId` INTEGER NOT NULL, `observerGeohash` TEXT NOT NULL, `tleEpochMillis` INTEGER NOT NULL, `aosMillis` INTEGER NOT NULL, `tcaMillis` INTEGER NOT NULL, `losMillis` INTEGER NOT NULL, `maxElevationDeg` REAL NOT NULL, `aosAzimuthDeg` REAL NOT NULL, `losAzimuthDeg` REAL NOT NULL, `arcJson` TEXT NOT NULL, `computedAtMillis` INTEGER NOT NULL, PRIMARY KEY(`noradId`, `observerGeohash`, `tleEpochMillis`, `aosMillis`))",
+        "fields": [
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observerGeohash",
+            "columnName": "observerGeohash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tleEpochMillis",
+            "columnName": "tleEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aosMillis",
+            "columnName": "aosMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tcaMillis",
+            "columnName": "tcaMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "losMillis",
+            "columnName": "losMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxElevationDeg",
+            "columnName": "maxElevationDeg",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aosAzimuthDeg",
+            "columnName": "aosAzimuthDeg",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "losAzimuthDeg",
+            "columnName": "losAzimuthDeg",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "arcJson",
+            "columnName": "arcJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "computedAtMillis",
+            "columnName": "computedAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "noradId",
+            "observerGeohash",
+            "tleEpochMillis",
+            "aosMillis"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pass_cache_aosMillis",
+            "unique": false,
+            "columnNames": [
+              "aosMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pass_cache_aosMillis` ON `${TABLE_NAME}` (`aosMillis`)"
+          },
+          {
+            "name": "index_pass_cache_observerGeohash_tleEpochMillis",
+            "unique": false,
+            "columnNames": [
+              "observerGeohash",
+              "tleEpochMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pass_cache_observerGeohash_tleEpochMillis` ON `${TABLE_NAME}` (`observerGeohash`, `tleEpochMillis`)"
+          }
+        ]
+      },
+      {
+        "tableName": "pass_alerts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `noradId` INTEGER NOT NULL, `satelliteName` TEXT NOT NULL, `aosMillis` INTEGER NOT NULL, `maxElevationDeg` REAL NOT NULL, `aosAzimuthDeg` REAL NOT NULL, `leadTimeSeconds` INTEGER NOT NULL, `createdAtMillis` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "satelliteName",
+            "columnName": "satelliteName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aosMillis",
+            "columnName": "aosMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxElevationDeg",
+            "columnName": "maxElevationDeg",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aosAzimuthDeg",
+            "columnName": "aosAzimuthDeg",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leadTimeSeconds",
+            "columnName": "leadTimeSeconds",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtMillis",
+            "columnName": "createdAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pass_alerts_aosMillis",
+            "unique": false,
+            "columnNames": [
+              "aosMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pass_alerts_aosMillis` ON `${TABLE_NAME}` (`aosMillis`)"
+          }
+        ]
+      },
+      {
+        "tableName": "artifacts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `noradId` INTEGER NOT NULL, `satelliteName` TEXT NOT NULL, `kind` TEXT NOT NULL, `filePath` TEXT NOT NULL, `createdAtMillis` INTEGER NOT NULL, `frequencyHz` INTEGER, `mode` TEXT, `maxElevationDeg` REAL, `notes` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "satelliteName",
+            "columnName": "satelliteName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "filePath",
+            "columnName": "filePath",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtMillis",
+            "columnName": "createdAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "frequencyHz",
+            "columnName": "frequencyHz",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mode",
+            "columnName": "mode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "maxElevationDeg",
+            "columnName": "maxElevationDeg",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_artifacts_noradId",
+            "unique": false,
+            "columnNames": [
+              "noradId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_artifacts_noradId` ON `${TABLE_NAME}` (`noradId`)"
+          },
+          {
+            "name": "index_artifacts_createdAtMillis",
+            "unique": false,
+            "columnNames": [
+              "createdAtMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_artifacts_createdAtMillis` ON `${TABLE_NAME}` (`createdAtMillis`)"
+          }
+        ]
+      },
+      {
+        "tableName": "observations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `noradId` INTEGER NOT NULL, `satelliteName` TEXT NOT NULL, `startedAtMillis` INTEGER NOT NULL, `endedAtMillis` INTEGER, `frequencyHz` INTEGER NOT NULL, `mode` TEXT NOT NULL, `sourceKind` TEXT NOT NULL, `maxElevationDeg` REAL, `artifactCount` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noradId",
+            "columnName": "noradId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "satelliteName",
+            "columnName": "satelliteName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startedAtMillis",
+            "columnName": "startedAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAtMillis",
+            "columnName": "endedAtMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "frequencyHz",
+            "columnName": "frequencyHz",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mode",
+            "columnName": "mode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceKind",
+            "columnName": "sourceKind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxElevationDeg",
+            "columnName": "maxElevationDeg",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "artifactCount",
+            "columnName": "artifactCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_observations_startedAtMillis",
+            "unique": false,
+            "columnNames": [
+              "startedAtMillis"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_observations_startedAtMillis` ON `${TABLE_NAME}` (`startedAtMillis`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd87b1a4b527a53c4750ae109f51a2050')"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+rules_version = '2';
+
+// SatRide Firestore rules.
+//
+// Deploy with `firebase deploy --only firestore:rules` from this directory (a firebase.json that
+// points at this file is alongside), or paste into the console. Two products live here:
+//
+//  - `users/{uid}`: the profile document (see core/auth/ProfileRepository.kt).
+//  - `rooms/{code}` + `rooms/{code}/players/{uid}` and `leaderboards/{board}/scores/{uid}`:
+//    Multi-Play (see feature/play/.../multiplay/net/RoomRepository.kt).
+//
+// Multi-Play accepts *anonymous* Firebase sessions (enable the Anonymous provider in
+// Authentication → Sign-in method). Every write is attributed to a uid, and every document a
+// phone writes is keyed by that uid, which is what stops one player rewriting another's craft.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // --- Profiles ------------------------------------------------------------------------
+    match /users/{uid} {
+      allow read: if isSelf(uid);
+      allow create: if isSelf(uid)
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() > 0
+        && request.resource.data.displayName.size() <= 60;
+      allow update: if isSelf(uid)
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isSelf(uid);
+    }
+
+    // --- Multi-Play rooms ----------------------------------------------------------------
+    match /rooms/{code} {
+      // Anyone signed in (anonymous included) can look a room up by its code.
+      allow read: if signedIn();
+
+      // Only the host creates the room, under their own uid, with a sane lifetime.
+      allow create: if signedIn()
+        && request.resource.data.hostUid == request.auth.uid
+        && request.resource.data.code == code
+        && request.resource.data.maxPlayers <= 10
+        && request.resource.data.expiresAtMs - request.resource.data.createdAtMs <= 16 * 60 * 1000;
+
+      // The host runs the room. Any member may write `itUid` (Tag is judged by whoever is it)
+      // and may mark the room finished (the host may have left).
+      allow update: if signedIn() && (
+        resource.data.hostUid == request.auth.uid
+        || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['itUid', 'status'])
+      );
+      allow delete: if signedIn() && resource.data.hostUid == request.auth.uid;
+
+      match /players/{uid} {
+        allow read: if signedIn();
+        // Your own seat, or a bot seat you host (bot docs carry `owner`). The Solar System mode
+        // writes extra short-named flight fields (px/py/pz, fx/fy/fz, wp, vis, tgt, pm) into the
+        // same document; nothing here needs to know about them.
+        allow create, update: if signedIn()
+          && (request.auth.uid == uid || request.resource.data.owner == request.auth.uid)
+          && request.resource.data.name is string
+          && request.resource.data.name.size() <= 24;
+        allow delete: if signedIn()
+          && (request.auth.uid == uid
+              || resource.data.owner == request.auth.uid
+              || get(/databases/$(database)/documents/rooms/$(code)).data.hostUid == request.auth.uid);
+      }
+    }
+
+    // --- Leaderboards --------------------------------------------------------------------
+    match /leaderboards/{board}/scores/{uid} {
+      allow read: if signedIn();
+      allow write: if isSelf(uid)
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 100000
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 24;
+    }
+  }
+}

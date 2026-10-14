@@ -1,0 +1,308 @@
+/*
+ * SatRide's site palette, taken from the app so the two read as one product: the same near-black
+ * navy, the same cyan tracking accent, the same generous radii.
+ */
+:root {
+  --space: #070622;
+  --space-deep: #04031a;
+  --surface: #12153a;
+  --surface-raised: #191d4a;
+  --hairline: rgba(150, 170, 255, 0.16);
+  --ink: #f2f4ff;
+  --ink-soft: #a8b3e6;
+  --accent: #35d6e8;
+  --accent-strong: #5b8cff;
+  --danger: #ff6b6b;
+  --radius: 18px;
+  --measure: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--space);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Layout ---------------------------------------------------------------------------------- */
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--hairline);
+  background: rgba(7, 6, 34, 0.86);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 68px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 18px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.site-nav a.active {
+  color: var(--accent);
+}
+
+main {
+  flex: 1;
+  padding: 48px 0 72px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  padding: 28px 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.site-footer .wrap {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* --- Typography ------------------------------------------------------------------------------ */
+
+h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 36px 0 10px;
+}
+
+h3 {
+  font-size: 1.02rem;
+  margin: 24px 0 6px;
+}
+
+p,
+li {
+  color: var(--ink-soft);
+}
+
+.lede {
+  font-size: 1.06rem;
+  color: var(--ink-soft);
+}
+
+.updated {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin-bottom: 28px;
+}
+
+/* --- Pieces ---------------------------------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin: 18px 0;
+}
+
+.card.warn {
+  border-color: rgba(255, 107, 107, 0.45);
+  background: rgba(255, 107, 107, 0.07);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 24px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  background: var(--accent);
+  color: #04121a;
+  transition: filter 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  filter: brightness(1.08);
+  text-decoration: none;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+
+.button.danger {
+  background: var(--danger);
+  color: #2a0606;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-actions {
+  margin-top: 26px;
+}
+
+.features {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 34px;
+}
+
+.notice {
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 0.92rem;
+}
+
+.notice.error {
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  color: #ffb4b4;
+}
+
+.notice.ok {
+  background: rgba(53, 214, 232, 0.1);
+  border: 1px solid rgba(53, 214, 232, 0.35);
+  color: #a6f0f8;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.account img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+
+th {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+td {
+  color: var(--ink-soft);
+}
+
+/* A checkbox that has to be ticked before an irreversible button unlocks. */
+.confirm {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 18px 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+.confirm input {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--danger);
+}

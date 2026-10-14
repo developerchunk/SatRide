@@ -1,0 +1,27 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{kt,kts}]
+# intellij_idea rather than ktlint_official: the official style forces wrapping that reads
+# badly in Compose builder code (every trailing lambda argument pushed onto its own line).
+ktlint_code_style = intellij_idea
+max_line_length = 120
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+
+# @Composable functions are PascalCase by established Compose convention, which ktlint's
+# function-naming rule cannot distinguish from a plain function.
+ktlint_standard_function-naming = disabled
+
+[*.{yml,yaml,json,xml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

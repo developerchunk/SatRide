@@ -1,0 +1,18 @@
+// TEAM_ID is appended to the bundle identifier below — it is NOT the signing team.
+//
+// Leave it empty. The signing team is `DEVELOPMENT_TEAM` in the project (46C9R239Q5), which Xcode
+// manages itself. Putting the team id here instead would build the app as
+// `com.developerstring.satride.SatRide46C9R239Q5`, and `GoogleService-Info.plist` is registered for
+// `com.developerstring.satride.SatRide` — Firebase refuses to initialise on a bundle id it does not
+// know, and it fails at *runtime*, not at build time, so nothing would look wrong until sign-in
+// silently stopped working.
+//
+// The suffix exists in the KMP template so several people on free personal teams can install the
+// same sample side by side. This app is registered with Firebase, so it needs one fixed identifier.
+TEAM_ID=
+
+PRODUCT_NAME=SatRide
+PRODUCT_BUNDLE_IDENTIFIER=com.developerstring.satride.SatRide$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
